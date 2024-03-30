@@ -1,7 +1,16 @@
-import Image from "next/image";
+import Product from "@/components/product/Product";
+import { shoose } from "@/data";
+import { ShooseItem } from "@/types/shooItem";
+import { Box } from "@mui/material";
+
 
 export default function Home() {
+  
   return (
-    <h1>Root page...</h1>
+    <Box className="grid gap-y-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" >
+      {shoose.map((shooe: ShooseItem): JSX.Element => {
+        return <Product id={shooe.id} image={shooe.image} name={shooe.name} price={shooe.price} />;
+      })}
+    </Box>
   );
 }

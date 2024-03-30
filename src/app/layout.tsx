@@ -5,10 +5,6 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import { Box } from "@mui/material";
 import Footer from "@/components/footer/Footer";
-import { ThemeProvider } from 'styled-components';
-
-
-
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +26,7 @@ export default function RootLayout({
         </header>
 
         <main>
-          <Box sx={{marginX: "20px", marginY: "30px"}}>
+          <Box sx={{ marginX: "20px", marginY: "30px" }}>
             {children}
           </Box>
         </main>
