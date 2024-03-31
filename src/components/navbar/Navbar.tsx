@@ -5,12 +5,15 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { IconButton } from '@mui/material';
+import { Badge, IconButton } from '@mui/material';
 import Link from 'next/link';
 import Drawers from '../Drawer';
+import { useSelector } from 'react-redux';
 
 export default function Navbar() {
     const [open, setOpen] = React.useState(false);
+    const phones = useSelector((state: any) => state.counter?.value);
+
 
 
     return (
@@ -28,14 +31,16 @@ export default function Navbar() {
                                 <ShoppingCartIcon />
                             </Badge>
                         </Link> */}
-                        <IconButton onClick={()=> setOpen(!open)} aria-label="shopping-chart" sx={{color: "white"}}>
-                            <ShoppingCartIcon />
+                        <IconButton disabled={phones?.length === 0} onClick={() => setOpen(!open)} aria-label="shopping-chart" sx={{ color: "white" }}>
+                            <Badge color="error" badgeContent={phones?.length}>
+                                <ShoppingCartIcon />
+                            </Badge>
                         </IconButton>
                     </Box>
 
                 </Toolbar>
             </AppBar>
-            <Drawers status={open} setstate={setOpen}/>
+            <Drawers status={open} setstate={setOpen} />
         </Box>
     );
 }
