@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import { Box } from "@mui/material";
 import Footer from "@/components/footer/Footer";
+import { StoreProvider } from '@/reduxconfig/StoreProvider';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,22 +20,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <header>
-          <Navbar />
-        </header>
+    <StoreProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <header>
+            <Navbar />
+          </header>
 
-        <main>
-          <Box sx={{ marginX: "20px", marginY: "30px" }}>
-            {children}
-          </Box>
-        </main>
+          <main>
+            <Box sx={{ marginX: "20px", marginY: "30px" }}>
+              {children}
+            </Box>
+          </main>
 
-        <footer>
-          <Footer />
-        </footer>
-      </body>
-    </html >
+          <footer>
+            <Footer />
+          </footer>
+        </body>
+      </html >
+    </StoreProvider>
   );
 }
