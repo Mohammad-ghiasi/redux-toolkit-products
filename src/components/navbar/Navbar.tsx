@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge, IconButton } from '@mui/material';
 import Link from 'next/link';
-import Drawers from '../Drawer';
+import Drawers from '../darwer/Drawer';
 import { useSelector } from 'react-redux';
 
 export default function Navbar() {

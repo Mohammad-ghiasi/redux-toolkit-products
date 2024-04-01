@@ -1,3 +1,4 @@
+"use client"
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,8 +9,11 @@ import { ShooseItem } from '@/types/shooItem';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { addphone } from '@/reduxconfig/slices/productslice';
 
 export default function Product({ id, name, price, image }: ShooseItem) {
+    const dispatch = useDispatch()
     return (
 
         <Card sx={{ maxWidth: 300 }} className="shadow-lg shadow-gray-400">
@@ -38,7 +42,8 @@ export default function Product({ id, name, price, image }: ShooseItem) {
                 </CardActionArea>
             </Link>
             <CardActions>
-                <Button className="font-bold" size="small" color="primary" variant="contained" startIcon={<AddShoppingCartIcon />} sx={{ marginBottom: "12px" }}>
+                <Button onClick={()=> {dispatch(addphone({id, name, price, image}))
+                }} className="font-bold" size="small" color="primary" variant="contained" startIcon={<AddShoppingCartIcon />} sx={{ marginBottom: "12px" }}>
                     Add to Chart
                 </Button>
             </CardActions>

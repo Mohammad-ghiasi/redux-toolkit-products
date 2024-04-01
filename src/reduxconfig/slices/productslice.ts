@@ -1,6 +1,14 @@
+"use client"
+import { SettingsEthernet } from "@mui/icons-material";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
+export interface product {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+}
 export interface productsType {
   value: {
     id: number;
@@ -34,20 +42,21 @@ export const products = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    // increment: (state) => {
-    //   state.value += 1;
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1;
-    // },
-    // // Use the PayloadAction type to declare the contents of `action.payload`
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload;
-    // },
+    addphone: (state, action) => {
+      state.value = [...state.value, action.payload];
+      console.log("hi")
+    },
+    deletephone: (state, action) => {
+      state.value = state.value.filter((item: product) => {
+        return item.id !== action.payload
+      })
+      console.log("hi");
+      
+    }
   },
 });
 
-export const {} = products.actions;
+export const {addphone, deletephone} = products.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const productslist = (state: any) => state.products.value;

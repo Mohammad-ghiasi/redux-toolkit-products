@@ -1,4 +1,5 @@
-import { productsType } from '@/reduxconfig/slices/productslice';
+"use client"
+import { deletephone, productsType } from '@/reduxconfig/slices/productslice';
 import { Box, Button, Drawer, IconButton, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
@@ -45,7 +46,7 @@ export default function Drawers({ status, setstate }: propValue) {
                                 {product?.price}
                             </Typography>
                             <Box className="flex justify-center flex-col-reverse md:flex-row">
-                                <IconButton color="error">
+                                <IconButton onClick={() => {dispatch(deletephone(product.id))}} color="error">
                                     <DeleteIcon />
                                 </IconButton>
                                 <Button variant='outlined' color='primary' startIcon={<AttachMoneyIcon />}>Payment</Button>

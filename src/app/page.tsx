@@ -3,7 +3,6 @@ import { shoose } from "@/data";
 import { ShooseItem } from "@/types/shooItem";
 import { Box } from "@mui/material";
 
-
 export default function Home() {
   
   return (
