@@ -21,21 +21,7 @@ export interface productsType {
 
 // Define the initial state using that type
 const initialState: productsType | null = {
-  value: [
-    {
-      id: 1,
-      name: "galexy A14",
-      price: 5230000,
-      image: "https://dl.next1code.ir/images/mobile/A14.webp",
-    },
-
-    {
-      id: 2,
-      name: "galexy S23 FE",
-      price: 23900000,
-      image: "https://dl.next1code.ir/images/mobile/S23FE.webp",
-    },
-  ],
+  value: [],
 } as productsType;
 
 export const products = createSlice({
@@ -54,7 +40,6 @@ export const products = createSlice({
           console.log('Phone number already exists:', action.payload.id);
       }
   },
-  
 
     deletephone: (state, action) => {
       state.value = state.value.filter((item: product) => {
