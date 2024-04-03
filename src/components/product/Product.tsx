@@ -1,3 +1,4 @@
+"use client"
 // Import necessary modules and components
 import * as React from 'react';
 import Card from '@mui/material/Card';
