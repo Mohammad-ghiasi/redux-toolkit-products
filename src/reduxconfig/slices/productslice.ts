@@ -1,9 +1,15 @@
-"use client";
-import { SettingsEthernet } from "@mui/icons-material";
+// This is a Redux slice file for managing a list of products in a store.
+// The products are stored as an array of objects with the following properties:
+// - id: number
+// - name: string
+// - price: number
+// - image: string
+
+// Import necessary dependencies
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { store } from "../store";
 
-// Define a type for the slice state
+// Define a type for the product object and the products array
 export interface product {
   id: number;
   name: string;
@@ -19,41 +25,46 @@ export interface productsType {
   }[];
 }
 
-// Define the initial state using that type
+// Define the initial state of the slice using the productsType interface
 const initialState: productsType | null = {
   value: [],
 } as productsType;
 
+// Create the slice using createSlice function
 export const products = createSlice({
   name: "products",
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    addphone: (state, action) => {
-      // Check if the phone number already exists in the state
-      const phoneNumberExists = state.value.some((phone: product) => phone.id === action.payload.id);
-  
-      // If the phone number doesn't exist, add it to the state
-      if (!phoneNumberExists) {
-          state.value = [...state.value, action.payload];
-      } else {
-          console.log('Phone number already exists:', action.payload.id);
-      }
-  },
+    // Define a reducer function to add a new product to the list
+    addphone: (state, action: PayloadAction<product>) => {
+      // Check if the product already exists in the list
+      const productExists = state.value.some((product: product) => product.id === action.payload.id);
 
-    deletephone: (state, action) => {
-      state.value = state.value.filter((item: product) => {
-        return item.id !== action.payload;
-      });
+      // If the product does not exist, add it to the list
+      if (!productExists) {
+        state.value = [...state.value, action.payload];
+      }
+      // Otherwise, log a message to the console
+      else {
+        console.log('Product already exists:', action.payload.id);
+      }
     },
-  },
+
+    // Define a reducer function to delete a product from the list
+    deletephone: (state, action: PayloadAction<number>) => {
+      // Filter out the product with the matching id from the list
+      state.value = state.value.filter((product: product) => {
+        return product.id!== action.payload;
+      });
+    }
+  }
 });
 
+// Export the action creators for adding and deleting products
 export const { addphone, deletephone } = products.actions;
 
-// Other code such as selectors can use the imported `RootState` type
+// Export a selector function to get the list of products from the state
 export const productslist = (state: any) => state.products.value;
 
+// Export the default reducer for the products slice
 export default products.reducer;
-
-//counterReducer
