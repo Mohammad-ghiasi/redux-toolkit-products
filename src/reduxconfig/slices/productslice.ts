@@ -1,13 +1,14 @@
-"use client"
+"use client";
 import { SettingsEthernet } from "@mui/icons-material";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { store } from "../store";
 
 // Define a type for the slice state
 export interface product {
-    id: number;
-    name: string;
-    price: number;
-    image: string;
+  id: number;
+  name: string;
+  price: number;
+  image: string;
 }
 export interface productsType {
   value: {
@@ -43,20 +44,27 @@ export const products = createSlice({
   initialState,
   reducers: {
     addphone: (state, action) => {
-      state.value = [...state.value, action.payload];
-      console.log("hi")
-    },
+      // Check if the phone number already exists in the state
+      const phoneNumberExists = state.value.some((phone: product) => phone.id === action.payload.id);
+  
+      // If the phone number doesn't exist, add it to the state
+      if (!phoneNumberExists) {
+          state.value = [...state.value, action.payload];
+      } else {
+          console.log('Phone number already exists:', action.payload.id);
+      }
+  },
+  
+
     deletephone: (state, action) => {
       state.value = state.value.filter((item: product) => {
-        return item.id !== action.payload
-      })
-      console.log("hi");
-      
-    }
+        return item.id !== action.payload;
+      });
+    },
   },
 });
 
-export const {addphone, deletephone} = products.actions;
+export const { addphone, deletephone } = products.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const productslist = (state: any) => state.products.value;
