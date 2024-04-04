@@ -1,3 +1,4 @@
+"use client"
 /**
  * Navbar component that renders a header with the application's title and a shopping cart icon.
  * The shopping cart icon displays the number of items in the cart (phones) using the 'phones' state.
