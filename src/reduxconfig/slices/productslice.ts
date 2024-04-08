@@ -7,7 +7,8 @@
 
 // Import necessary dependencies
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { store } from "../store";
+import { toast } from 'react-toastify';
+
 
 // Define a type for the product object and the products array
 export interface product {
@@ -43,10 +44,12 @@ export const products = createSlice({
       // If the product does not exist, add it to the list
       if (!productExists) {
         state.value = [...state.value, action.payload];
+        toast.success('Product added successfully');
       }
       // Otherwise, log a message to the console
       else {
         console.log('Product already exists:', action.payload.id);
+        toast.warning('Product already exists');
       }
     },
 
@@ -56,6 +59,7 @@ export const products = createSlice({
       state.value = state.value.filter((product: product) => {
         return product.id!== action.payload;
       });
+      toast.success('Product deleted successfully');
     }
   }
 });

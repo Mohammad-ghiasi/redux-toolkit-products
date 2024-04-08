@@ -12,13 +12,15 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { addphone } from '@/reduxconfig/slices/productslice'; // Import the Redux action for adding a phone to the shopping cart
-import toast, { Toaster } from 'react-hot-toast'; // Import toast notifications
+// import toast, { Toaster } from 'react-hot-toast'; // Import toast notifications
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Define the Product component, which displays a product card with product details and an "Add to Cart" button
 export default function Product({ id, name, price, image }: ShooseItem) {
     const dispatch = useDispatch(); // Get the Redux dispatch function to dispatch the addphone action
     const notify = () => { // Define a function to show a toast notification and dispatch the addphone action
-        toast.success('phone add to shopping chart!');
+        // toast.success('phone add to shopping chart!');
         dispatch(addphone({id, name, price, image}));
     };
 
@@ -55,7 +57,8 @@ export default function Product({ id, name, price, image }: ShooseItem) {
                 <Button onClick={notify} className="font-bold" size="small" color="primary" variant="contained" startIcon={<AddShoppingCartIcon />} sx={{ marginBottom: "12px" }}>
                     Add to Chart
                 </Button>
-                <Toaster /> {/* Add a Toaster component to display the toast notification */}
+                {/* <Toaster /> */}
+                <ToastContainer /> {/* Add a Toaster component to display the toast notification */}
             </CardActions>
         </Card>
     );
